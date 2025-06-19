@@ -1,209 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heap Sort - Alturas</title>
-  <link rel="icon" href="./imagens/heap-sort-small.png" type="image/png">
-  <link rel="stylesheet" href="./heapStyle.css">
+  <link rel="stylesheet" href="heapStyle.css">
 </head>
 
 <body>
   <div class="heap_page">
-    <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 3em;">Heap Sort - Alturas -
-      Grupo 1</h3>
+    <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 3em;">Heap Sort
+      - Alturas - Grupo 1</h3>
+
     <div class="container_heap">
-      <img src="./imagens/Heap-Sort-Logo.png" alt="logo" style="height: 15vh; 
-      width: 8vw;
-      border-radius: 20px;
-      border-color: white;
-      border-width: 3px;
-      border-style: solid;
-      align-self: flex-start;
-      ">
-
-      <h3 style="margin-top: -7vh;">Digite os nomes e alturas dos 8 integrantes:</h3>
-
-      <!-- Área com campos para digitar nome e altura de 8 pessoas -->
-      <form id="formulario">
-        <!-- Cada linha é uma pessoa: nome + altura -->
-        <div class="ipts_pessoas">
-          <div>
-            <input type="text" placeholder="Nome 1" id="nome1">
-            <input type="number" step="0.01" placeholder="Altura" id="altura1">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 2" id="nome2">
-            <input type="number" step="0.01" placeholder="Altura" id="altura2">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 3" id="nome3">
-            <input type="number" step="0.01" placeholder="Altura" id="altura3">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 4" id="nome4">
-            <input type="number" step="0.01" placeholder="Altura" id="altura4">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 5" id="nome5">
-            <input type="number" step="0.01" placeholder="Altura" id="altura5">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 6" id="nome6">
-            <input type="number" step="0.01" placeholder="Altura" id="altura6">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 7" id="nome7">
-            <input type="number" step="0.01" placeholder="Altura" id="altura7">
-          </div>
-          <div>
-            <input type="text" placeholder="Nome 8" id="nome8">
-            <input type="number" step="0.01" placeholder="Altura" id="altura8">
-          </div>
-          <!-- Botão que chama a função de ordenação -->
-          <button type="button" onclick="ordenar()">Ordenar</button>
-        </div>
-
-
-      </form>
-
-      <!-- Onde o resultado vai aparecer -->
-      <div class="resultados">
-        <h4 style="justify-self: center;">Resultado (ordem crescente de altura):</h4>
-        <pre id="resultado"></pre>
-        <h4 style="justify-self: center;
-        font-size: 2em;">Árvore de Decisão:</h4>
-        <div class="tree">
-          <div class="level">
-            <div class="node" id="node0"></div>
-          </div>
-          <div class="connector"></div>
-          <div class="level">
-            <div class="node" id="node1"></div>
-            <div class="node" id="node2"></div>
-          </div>
-          <div class="double_connector">
-            <div class="connector" style="transform: skew(-35deg);"></div>
-            <div class="connector" style="transform: skew(35deg);"></div>
-          </div>
-          <div class="level">
-            <div class="node" id="node3"></div>
-            <div class="node" id="node4"></div>
-            <div class="node" id="node5"></div>
-            <div class="node" id="node6"></div>
-          </div>
-          <div class="connector"></div>
-          <div class="level">
-            <div class="node" id="node7"></div>
-          </div>
-        </div>
+      <div class="container_controls">
+        <div class="control_btn control_minimize">🗕</div>
+        <div class="control_btn control_maximize">🗖</div>
+        <div class="control_btn control_close">X</div>
       </div>
 
+      <div class="heap_content">
+        <img src="./imagens/Heap-Sort-Logo.png" alt="logo"
+          style="height: 15vh; width: 8vw; border: 3px solid black; align-self: flex-start; box-shadow: 7px 7px 0px rgba(0, 0, 0, 0.878);">
+        <h3 style="margin-top: -7vh; text-align: center; font-size: 2em;">Digite os nomes e alturas dos 8 integrantes:
+        </h3>
 
-      <script>
-        // Função que organiza o vetor pra formar um "heap"
-        function heapify(vetor, tamanho, raiz) {
-          var maior = raiz; // Começa assumindo que o maior é o primeiro da parte atual
-          var esq = 2 * raiz + 1; // Filho da esquerda
-          var dir = 2 * raiz + 2; // Filho da direita
+        <form id="formulario">
+          <div class="ipts_pessoas">
+            <div>
+              <input type="text" placeholder="Nome 1" id="nome1">
+              <input type="number" step="0.01" placeholder="Altura" id="altura1">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 2" id="nome2">
+              <input type="number" step="0.01" placeholder="Altura" id="altura2">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 3" id="nome3">
+              <input type="number" step="0.01" placeholder="Altura" id="altura3">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 4" id="nome4">
+              <input type="number" step="0.01" placeholder="Altura" id="altura4">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 5" id="nome5">
+              <input type="number" step="0.01" placeholder="Altura" id="altura5">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 6" id="nome6">
+              <input type="number" step="0.01" placeholder="Altura" id="altura6">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 7" id="nome7">
+              <input type="number" step="0.01" placeholder="Altura" id="altura7">
+            </div>
+            <div>
+              <input type="text" placeholder="Nome 8" id="nome8">
+              <input type="number" step="0.01" placeholder="Altura" id="altura8">
+            </div>
+            <button type="button" onclick="ordenar()">Ordenar</button>
+          </div>
+        </form>
 
-          // Se o filho da esquerda for maior que o atual
-          if (esq < tamanho && vetor[esq].altura > vetor[maior].altura) {
-            maior = esq;
-          }
+        <div class="resultados" id="resultados">
+          <div class="result_container">
+          </div>
 
-          // Se o filho da direita for maior que o atual
-          if (dir < tamanho && vetor[dir].altura > vetor[maior].altura) {
-            maior = dir;
-          }
+          <div class="window_box">
+            <div class="window_title_bar" style="font-size: 1.5em;">
+              Resultado.txt
+              <div class="window_controls">
+                <div class="control_btn control_minimize">🗕</div> 
+                <div class="control_btn control_maximize">🗖</div>
+                <div class="control_btn control_close">X</div>
+              </div>
+            </div>
+            <div class="window_content lista" id="lista">
+              <h4 style="font-size: 2em; text-align: center;">Resultado (ordem crescente de altura):</h4>
+              <pre id="resultado"
+                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 1.5em; color: black; text-align: center; justify-self:center;"></pre>
+            </div>
+          </div>
 
-          // Se o maior não for mais a raiz, troca eles de lugar
-          if (maior != raiz) {
-            var temp = vetor[raiz];
-            vetor[raiz] = vetor[maior];
-            vetor[maior] = temp;
+          <div class="window_box">
+            <div class="window_title_bar" style="font-size: 1.5em;">
+              arvore.exe
+              <div class="window_controls">
+                <div class="control_btn control_minimize">🗕</div>
+                <div class="control_btn control_maximize">🗖</div>
+                <div class="control_btn control_close">X</div>
+              </div>
+            </div>
+            <div class="window_content tree">
+              <h4 style="font-size: 2em; text-align: center;">Árvore de Decisão:</h4>
 
-            // Chama a função de novo para continuar arrumando
-            heapify(vetor, tamanho, maior);
-          }
-        }
+              <div class="level">
+                <div class="node" id="node0" style="margin: 0 0;"></div>
+              </div>
 
-        // Função principal que organiza todo o vetor com Heap Sort
-        function heapSort(vetor) {
-          var tamanho = vetor.length;
+              <div class="double_connector">
+                <div class="connector" style="transform: skew(-35deg); height: 40px;"></div>
+                <div class="connector" style="transform: skew(35deg); height: 40px;"></div>
+              </div>
 
-          // Primeiro monta o "heap"
-          for (var index = Math.floor(tamanho / 2) - 1; index >= 0; index--) {
-            heapify(vetor, tamanho, index);
-          }
+              <div class="level">
+                <div class="node" id="node1"></div>
+                <div class="node" id="node2"></div>
+              </div>
 
-          // Depois vai trocando os elementos pra ordenar
-          for (var index = tamanho - 1; index >= 0; index--) {
-            var temp = vetor[0];
-            vetor[0] = vetor[index];
-            vetor[index] = temp;
+              <div class="quadra_connector">
+                <div class="connector" style="transform: skew(-35deg); height: 40px;"></div>
+                <div class="connector" style=" height: 40px;"></div>
+                <div class="connector" style=" height: 40px;"></div>
+                <div class="connector" style="transform: skew(35deg); height: 40px;"></div>
+              </div>
 
-            // Organiza a parte que ainda falta
-            heapify(vetor, index, 0);
-          }
-        }
+              <div class="level">
+                <div class="node" id="node3"></div>
+                <div class="node" id="node4"></div>
+                <div class="node" id="node5"></div>
+                <div class="node" id="node6"></div>
+              </div>
 
-        // Função que é chamada quando clicamos no botão
-        function ordenar() {
-          var grupo = [];
-          var nodes = [
-            document.getElementById("node0"),
-            document.getElementById("node1"),
-            document.getElementById("node2"),
-            document.getElementById("node3"),
-            document.getElementById("node4"),
-            document.getElementById("node5"),
-            document.getElementById("node6"),
-            document.getElementById("node7")
-          ];
+              <div class="double_connector">
+                <div class="connector" style="transform: skew(-35deg); height: 40px;"></div>
+              </div>
 
-          // Limpa a árvore
-          for (var i = 0; i < 8; i++) {
-            nodes[i].textContent = "";
-          }
+              <div class="level">
+                <div class="node" id="node7"></div>
+              </div>
+            </div>
+          </div>
 
-          // Pega os valores
-          for (var i = 1; i <= 8; i++) {
-            var nome = document.getElementById("nome" + i).value.trim();
-            var altura = parseFloat(document.getElementById("altura" + i).value);
-
-            if (nome && !isNaN(altura)) {
-              grupo.push({ nome: nome, altura: altura });
-
-              // Preenche a árvore (até 8 elementos)
-              if (i <= 8) {
-                nodes[i - 1].textContent = nome;
+          <script>
+            function atualizarArvore(vetor) {
+              for (var i = 0; i < vetor.length; i++) {
+                var node = document.getElementById("node" + i);
+                if (node) {
+                  node.innerHTML = vetor[i].nome + "<br>" + vetor[i].altura.toFixed(2);
+                  node.style.backgroundColor = "white";
+                }
               }
             }
-          }
 
-          // Ordena (mantenha suas funções heapify e heapSort originais)
-          heapSort(grupo);
+            function heapify(vetor, tamanho, raiz) {
+              var maior = raiz;
+              var esq = 2 * raiz + 1;
+              var dir = 2 * raiz + 2;
 
-          // Mostra resultado
-          var texto = "";
-          if (grupo.length === 0) {
-            texto = "Insira algum valor para ordenar!";
-          } else {
-            for (var j = 0; j < grupo.length; j++) {
-              texto += grupo[j].nome + " - " + grupo[j].altura.toFixed(2) + "\n";
+              if (esq < tamanho && vetor[esq].altura > vetor[maior].altura) {
+                maior = esq;
+              }
+
+              if (dir < tamanho && vetor[dir].altura > vetor[maior].altura) {
+                maior = dir;
+              }
+
+              if (maior != raiz) {
+                var temp = vetor[raiz];
+                vetor[raiz] = vetor[maior];
+                vetor[maior] = temp;
+
+                atualizarArvore(vetor);
+
+                heapify(vetor, tamanho, maior);
+              }
             }
-          }
-          // Mostra o resultado na tela
-          document.getElementById("resultado").textContent = texto;
-          window.location.href = "#resultado";
-        }
 
+            function heapSort(vetor) {
+              var tamanho = vetor.length;
 
+              for (var i = Math.floor(tamanho / 2) - 1; i >= 0; i--) {
+                heapify(vetor, tamanho, i);
+              }
 
-      </script>
-    </div>
-  </div>
+              atualizarArvore(vetor);
+
+              for (var i = tamanho - 1; i > 0; i--) {
+                var temp = vetor[0];
+                vetor[0] = vetor[i];
+                vetor[i] = temp;
+
+                atualizarArvore(vetor);
+
+                heapify(vetor, i, 0);
+              }
+
+              atualizarArvore(vetor);
+            }
+
+            function ordenar() {
+              var grupo = [];
+              var texto = "Insira algum valor para ordenar!";
+              var algumCampoVazio = false;
+
+              for (var i = 1; i <= 8; i++) {
+                var nome = document.getElementById("nome" + i).value.trim();
+                var altura = parseFloat(document.getElementById("altura" + i).value);
+
+                if (nome && !isNaN(altura)) {
+                  grupo.push({ nome: nome, altura: altura });
+                } else {
+                  algumCampoVazio = true;
+                }
+              }
+
+              if (!algumCampoVazio && grupo.length === 8) {
+                heapSort(grupo);
+
+                texto = "";
+                for (var j = 0; j < grupo.length; j++) {
+                  texto += grupo[j].nome + " - " + grupo[j].altura.toFixed(2) + "\n";
+                }
+              }
+
+              document.getElementById("resultado").textContent = texto;
+
+              setTimeout(function () {
+                window.location.href = "#resultado";
+              }, 200);
+            }
+          </script>
+
 </body>
 
 </html>
